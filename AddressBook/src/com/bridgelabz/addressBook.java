@@ -1,6 +1,7 @@
 package com.bridgelabz;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,28 +14,30 @@ public class addressBook {
         System.out.println("Num of contacts you want to create");
         int count = in.nextInt();
         for (int i = 1; i <= count; i++) {
-            System.out.println("Enter the First Name:");
+            System.out.println("Contact " +i +"- Enter the First Name:");
             String firstname = in.next();
-            System.out.println("Enter the Last Name:");
+            System.out.println("Contact " +i +"- Enter the Last Name:");
             String lastname = in.next();
-            System.out.println("Enter the Address in words:");
+            System.out.println("Contact " +i +"- Enter the Address in words:");
             String address = in.next();
-            System.out.println("Enter the City:");
+            System.out.println("Contact " +i +"- Enter the City:");
             String city = in.next();
-            System.out.println("Enter the State Name:");
+            System.out.println("Contact " +i +"- Enter the State Name:");
             String state = in.next();
-            System.out.println("Enter the Pincode code:");
+            System.out.println("Contact " +i +"- Enter the Pincode code:");
             int pincode = in.nextInt();
-            System.out.println("Enter the Phone No");
+            System.out.println("Contact " +i +"- Enter the Phone No");
             long phone = in.nextLong();
-            System.out.println("Enter email id:");
+            System.out.println("Contact " +i +"- Enter email id:");
             String email = in.next();
             Address contact = new Address(firstname, lastname, address, city, state, pincode, phone, email);
             list.add(contact);
+            Collections.addAll(list);
         }
     }
 
     public void displayListItems() {
+        list.sort(Address.nameComparator);
         for (Address info : list) {
             System.out.println(info.getFirstName() + "  " + info.getLastName() + "  "
                     + info.getAddress() + "  " + info.getCity() + "  " + info.getState()
@@ -45,9 +48,9 @@ public class addressBook {
 
     public void editContact() {
         System.out.println("Enter the first name of the contact to be edited");
-        String newName = in.next();
+        String Name = in.next();
         for (Address info : list) {
-            if (info.getFirstName().contains(newName)) {
+            if (info.getFirstName().contains(Name)) {
                 int index = list.indexOf(info);
                 System.out.println(info.getFirstName() + "  " + info.getLastName() + "  "
                         + info.getAddress() + "  " + info.getCity() + "  " + info.getState()
@@ -70,6 +73,7 @@ public class addressBook {
                 String email = in.next();
                 list.set(index, new Address(firstname, lastname, address, city, state, pincode, phone, email));
                 displayListItems();
+                Collections.addAll(list);
             }
         }
     }
