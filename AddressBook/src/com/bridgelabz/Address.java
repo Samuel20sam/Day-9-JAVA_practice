@@ -1,7 +1,5 @@
 package com.bridgelabz;
 
-import java.util.Comparator;
-
 public class Address
 {
     private String firstName;
@@ -12,13 +10,6 @@ public class Address
     private int pincode;
     private long phoneNo;
     private String email;
-
-    public static Comparator<Address>nameComparator = (s1, s2) ->
-    {
-        String ContactName1 = s1.getFirstName().toUpperCase();
-        String ContactName2 = s2.getFirstName().toUpperCase();
-        return ContactName1.compareTo(ContactName2);
-    };
 
     public Address(String myFirstName, String myLastName, String myAddress, String myCity, String myState, int myPincode, long myPhoneNo, String myEmail)
     {
